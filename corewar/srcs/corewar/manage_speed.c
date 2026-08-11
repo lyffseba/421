@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 
 #include "corewar.h"
+# include <time.h>
 
-static void	wait_time(t_cor *cor, int time)
+static void	wait_time(t_cor *cor, clock_t wait)
 {
-	int		t;
+	clock_t	t;
 	int		key;
 
+	key = -1;
 	t = clock();
-	while (clock() - t < (unsigned long)time)
+	while ((clock_t)(clock() - t) < wait)
 	{
 		key = wgetch(stdscr);
 		if (key != -1 && (key == 'q' || key == 'w' || key == 'e' || key == 'r'
@@ -32,11 +34,12 @@ static void	wait_time(t_cor *cor, int time)
 
 static void	wait_time_very_slow(t_cor *cor)
 {
-	int		t;
+	clock_t	t;
 	int		key;
 
+	key = -1;
 	t = clock();
-	while (clock() - t < VERY_SLOW)
+	while ((clock_t)(clock() - t) < (clock_t)VERY_SLOW)
 	{
 		key = wgetch(stdscr);
 		if (key != -1 && (key == 'e' || key == 'r' || key == ' '))
