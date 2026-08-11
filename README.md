@@ -8,12 +8,23 @@ Nothing in those trees should be deleted.
 
 ## Contents
 
+Curriculum order (top → bottom):
+
 ```
-piscine_reloaded/   libft/              get_next_line/   fillit/
-ft_printf/          push_swap/          lem_in/          corewar/
-fdf/                fractol/            roger_skyline_1/ php_piscine/
+piscine_reloaded/
+libft/
+get_next_line/
+fillit/
+ft_printf/
+push_swap/
+lem_in/
+corewar/
+fdf/
+fractol/
+roger_skyline_1/
+php_piscine/
 workshops_machinelearning/
-resources/          Norme PDF and upstream overview
+resources/
 ```
 
 | Path | Project | Notes |
@@ -64,7 +75,6 @@ Confirms every expected project directory is present and non-empty.
 
 | Directory | Upstream |
 |-----------|----------|
-| `resources/` | github.com/anaiel/-42projects |
 | `piscine_reloaded/` | github.com/anaiel/PiscineReloaded |
 | `libft/` | github.com/anaiel/libft |
 | `get_next_line/` | github.com/anaiel/get_next_line |
@@ -78,6 +88,7 @@ Confirms every expected project directory is present and non-empty.
 | `roger_skyline_1/` | github.com/anaiel/roger-skyline-1 |
 | `php_piscine/` | github.com/anaiel/php_piscine |
 | `workshops_machinelearning/` | github.com/anaiel/workshops_machinelearning |
+| `resources/` | github.com/anaiel/-42projects |
 
 Educational mirror. Original authors retain rights to their code (see file
 headers). Scaffolding in this repository root is MIT (LICENSE).
