@@ -1,12 +1,13 @@
-# Build artifacts
 *.o
 *.a
 *.out
 *.dSYM/
 a.out
 .DS_Store
-**/.ipynb_checkpoints/
-**/__pycache__/
-*.pyc
+*~
+*.swp
 .vscode/
 .idea/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

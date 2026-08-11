@@ -1,109 +1,89 @@
-# 421 — Full 42 Cursus Mirror
+# 421
 
-Independent lyff nested repo with **complete source** for every public project from
-[anaiel/-42projects](https://github.com/anaiel/-42projects), including all linked
-project repositories (not just README links).
+Offline vault of [École 42](https://42.fr/) projects for personal practice.
 
-> École 42 · peer-to-peer · project-based · The Norm applies to C projects  
-> See `resources/norme.en.pdf` and `resources/ORIGINAL_OVERVIEW.md`.
+Complete source trees from the public repositories linked by
+[anaiel/-42projects](https://github.com/anaiel/-42projects) are kept in full.
+Nothing in those trees should be deleted.
 
-**Remote:** [github.com/lyffseba/421](https://github.com/lyffseba/421)
+## Contents
 
-## Layout
-
-```text
-421/
-├── README.md
-├── resources/
-│   ├── norme.en.pdf
-│   └── ORIGINAL_OVERVIEW.md
-├── piscine_reloaded/          # Cursus start
-├── libft/
-├── get_next_line/
-├── fillit/
-├── ft_printf/                 # Algo branch
-├── push_swap/
-├── lem_in/
-├── corewar/
-├── fdf/                       # Graphics branch
-├── fractol/
-├── roger_skyline_1/           # SysAdmin
-├── php_piscine/               # Web
-└── workshops_machinelearning/ # 42AI ML workshops
+```
+piscine_reloaded/   libft/              get_next_line/   fillit/
+ft_printf/          push_swap/          lem_in/          corewar/
+fdf/                fractol/            roger_skyline_1/ php_piscine/
+workshops_machinelearning/
+resources/          Norme PDF and upstream overview
 ```
 
-## Project tracker
+| Path | Project | Notes |
+|------|---------|-------|
+| `piscine_reloaded/` | Piscine Reloaded | C basics |
+| `libft/` | Libft | static library |
+| `get_next_line/` | Get Next Line | fd / buffers |
+| `fillit/` | Fillit | backtracking |
+| `ft_printf/` | ft_printf | variadic printf |
+| `push_swap/` | Push swap | stack sort |
+| `lem_in/` | Lem-in | graphs |
+| `corewar/` | Corewar | VM / asm |
+| `fdf/` | FdF | wireframe |
+| `fractol/` | Fract'ol | fractals |
+| `roger_skyline_1/` | Roger-Skyline-1 | sysadmin |
+| `php_piscine/` | Piscine PHP | web |
+| `workshops_machinelearning/` | 42AI workshops | ML |
+| `resources/norme.en.pdf` | The Norm | C standard at 42 |
+| `resources/ORIGINAL_OVERVIEW.md` | Upstream README | grades / history |
 
-Grades from the original overview. **100** = full mandatory; **101–125** = bonuses.
+## Build smoke
 
-### 🚩 Cursus start
+Requires `gcc` and `make`. Graphics/sysadmin trees need extra libs and are
+not built here.
 
-| Project | Path | Goals | Solo/Group | Grade |
-|---------|------|-------|------------|-------|
-| 42 Commandements | — | Code of conduct | Solo | 100 |
-| Piscine Reloaded | `piscine_reloaded/` | Basics of C | Solo | 100 |
-| Libft | `libft/` | Basics of C, static libraries | Solo | 125 |
-| Get_Next_Line | `get_next_line/` | FDs, parsing, bufferisation | Solo | 112 |
-| Fillit | `fillit/` | Basic algorithm, I/O | Group | 100 |
+```
+make check
+```
 
-### 🔱 Algo branch
+Equivalent:
 
-| Project | Path | Goals | Solo/Group | Grade |
-|---------|------|-------|------------|-------|
-| ft_printf | `ft_printf/` | Parsing, variadic functions | Group | 110 |
-| Push_swap | `push_swap/` | Sorting, stacks | Solo | 125 |
-| Lem-in | `lem_in/` | Graph search, max flow | Group | 124 |
-| Corewar | `corewar/` | Compiler, VM, assembler, viz | Group | 125 |
-
-### 🎮 Graphics branch
-
-| Project | Path | Goals | Solo/Group | Grade |
-|---------|------|-------|------------|-------|
-| FdF | `fdf/` | mlx, segments, 3D→2D | Group | 125 |
-| Fract'ol | `fractol/` | 2D programming, optimization | Solo | 117 |
-
-### 🔐 Systems administration
-
-| Project | Path | Goals | Solo/Group | Grade |
-|---------|------|-------|------------|-------|
-| Init | — (no public source) | Unix, sysadmin | Solo | 100 |
-| Roger-Skyline-1 | `roger_skyline_1/` | Unix, networks | Solo | 60 |
-| Docker-1 | — (unfinished upstream) | Containers, DevOps | Solo | — |
-
-### 🌐 Web branch
-
-| Project | Path | Goals | Solo/Group | Grade |
-|---------|------|-------|------------|-------|
-| Piscine PHP | `php_piscine/` | HTML, PHP, SQL, OOP | Solo | 104 |
-| Camagru / Matcha / Hypertube | — (unfinished upstream) | Web apps | — | — |
-
-### 💡 Machine learning (42AI)
-
-| Path | Notes |
-|------|-------|
-| `workshops_machinelearning/` | 14-week workshops; k-means presentation included |
-
-## Quick build samples
-
-```bash
-# Libft
+```
 make -C libft && make -C libft fclean
-
-# Get next line / printf / push_swap / fillit (when Makefile present)
-make -C ft_printf
-make -C push_swap
-make -C fillit
+make -C get_next_line && make -C get_next_line fclean
+make -C fillit && make -C fillit fclean
+make -C ft_printf && make -C ft_printf fclean
 ```
 
-C projects follow **the Norm** (`resources/norme.en.pdf`): ≤25 lines/function, ≤5 functions per `.c`, Makefile must not relink, etc.
+## Integrity
+
+```
+make verify
+```
+
+Confirms every expected project directory is present and non-empty.
 
 ## Provenance
 
-- Overview & Norm: [anaiel/-42projects](https://github.com/anaiel/-42projects)
-- Per-project sources mirrored from the public `anaiel/*` repos linked in that overview
-- This tree is a **local educational mirror** for the lyff portfolio hub (`~/lyff/421`)
-- Upstream author: [anaiel](https://github.com/anaiel) @ 42
+| Directory | Upstream |
+|-----------|----------|
+| `resources/` | github.com/anaiel/-42projects |
+| `piscine_reloaded/` | github.com/anaiel/PiscineReloaded |
+| `libft/` | github.com/anaiel/libft |
+| `get_next_line/` | github.com/anaiel/get_next_line |
+| `fillit/` | github.com/anaiel/fillit |
+| `ft_printf/` | github.com/anaiel/ft_printf |
+| `push_swap/` | github.com/anaiel/push_swap |
+| `lem_in/` | github.com/anaiel/lem-in |
+| `corewar/` | github.com/anaiel/corewar |
+| `fdf/` | github.com/anaiel/fdf |
+| `fractol/` | github.com/anaiel/fractol |
+| `roger_skyline_1/` | github.com/anaiel/roger-skyline-1 |
+| `php_piscine/` | github.com/anaiel/php_piscine |
+| `workshops_machinelearning/` | github.com/anaiel/workshops_machinelearning |
 
-## Not included
+Educational mirror. Original authors retain rights to their code (see file
+headers). Scaffolding in this repository root is MIT (LICENSE).
 
-No public upstream source was linked for: Init writeups, Docker-1, Camagru, Matcha, Hypertube.
+## Links
+
+- https://github.com/lyffseba/421
+- https://github.com/anaiel/-42projects
+- https://42.fr/
