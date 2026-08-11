@@ -45,30 +45,27 @@ resources/
 | `resources/norme.en.pdf` | The Norm | C standard at 42 |
 | `resources/ORIGINAL_OVERVIEW.md` | Upstream README | grades / history |
 
-## Build & test
+## Local checks (optional)
+
+No GitHub Actions. Health is on-demand on your machine only.
 
 Requires `gcc`/`clang` and `make`. On Linux, `libncurses` is needed for
 `corewar`.
 
 ```
-make verify   # trees present
-make check    # build/fclean smoke (fails on compile error)
-make test     # functional smoke (printf, push_swap, fillit, gnl, lem-in, corewar)
+make verify   # every project tree present
+make check    # compile + fclean smoke (libft … corewar)
+make test     # run key binaries (printf, push_swap, fillit, gnl, lem-in, corewar)
 ```
 
-Smoke build targets: `libft`, `get_next_line`, `fillit`, `ft_printf`,
-`push_swap`, `lem_in`, `corewar`.
-
-Graphics (`fdf`, `fractol`) build against the bundled
-`fdf/resources/minilibx_macos` (macOS / OpenGL + AppKit):
+Graphics (`fdf`, `fractol`) use bundled `fdf/resources/minilibx_macos`
+(macOS / OpenGL + AppKit):
 
 ```
-make -C fdf
-make -C fractol
+make -C fdf && make -C fractol
 ```
 
-Not covered by automated smoke: `roger_skyline_1` (docs only),
-`php_piscine` (needs PHP), `lem_in/bonus_visualizer` (needs SDL2),
+Out of scope for smoke: `roger_skyline_1` (docs), `php_piscine`, SDL bonus,
 ML notebooks.
 
 ## Provenance
