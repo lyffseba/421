@@ -19,7 +19,10 @@ t_file	*ft_fopen(const char *path)
 	if (!(stream = (t_file *)malloc(sizeof(t_file))))
 		return (NULL);
 	if ((stream->fd = open(path, O_RDONLY)) == -1)
+	{
+		free(stream);
 		return (NULL);
+	}
 	stream->buf[0] = 0;
 	stream->i = 0;
 	return (stream);

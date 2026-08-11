@@ -16,8 +16,8 @@ int		ft_fclose(t_file *stream)
 {
 	if (!stream)
 		return (0);
-	if (close(stream->fd) == -1)
+	if (stream->fd > 2 && close(stream->fd) == -1)
 		return (-1);
-	free(stream->buf);
+	free(stream);
 	return (0);
 }

@@ -83,11 +83,11 @@ $(OBJSFD)$(COMMONFD): $(OBJSFD)
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ directory"
 
 $(NAME): $(OBJSFD)$(CHECKERFD) $(CHECKER_OBJS) $(OBJSFD)$(COMMONFD) $(COMMON_OBJS) $(LIBFT) $(HDRS)
-	@gcc $(CFLAGS) $(LIB_BINARY) $(CHECKER_OBJS) $(COMMON_OBJS) -o $@
+	@gcc $(CFLAGS) $(CHECKER_OBJS) $(COMMON_OBJS) $(LIB_BINARY) -o $@
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ executable"
 
 $(NAME2): $(OBJSFD)$(PUSHSWAPFD) $(PUSHSWAP_OBJS) $(OBJSFD)$(COMMONFD) $(COMMON_OBJS) $(LIBFT) $(HDRS)
-	@gcc $(CFLAGS) $(LIB_BINARY) $(PUSHSWAP_OBJS) $(COMMON_OBJS) -o $@
+	@gcc $(CFLAGS) $(PUSHSWAP_OBJS) $(COMMON_OBJS) $(LIB_BINARY) -o $@
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ executable"
 
 $(OBJSFD)$(PUSHSWAPFD)%.o: $(SRCSFD)$(PUSHSWAPFD)%.c $(HDRS) $(LIBFT)
