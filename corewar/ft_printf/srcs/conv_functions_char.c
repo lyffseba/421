@@ -50,7 +50,7 @@ char					*conv_p(va_list *ap, t_specs *specs)
 
 	(void)specs;
 	str = va_arg(*ap, void *);
-	conv = ft_itoa_base((unsigned long)str, 16);
+	conv = ft_llitoa_base((unsigned long)str, 16);
 	conv = suffix("0x", conv);
 	return (conv);
 }

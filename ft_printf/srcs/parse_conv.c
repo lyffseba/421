@@ -42,7 +42,9 @@ static t_conv	*initialize_conv_functions(void)
 
 static char		*get_mod(char *specs)
 {
-	if (ft_strchr(specs, 'l'))
+	if (ft_strstr(specs, "ll"))
+		return ("ll");
+	else if (ft_strchr(specs, 'l'))
 		return ("l");
 	else if (ft_strstr(specs, "hh"))
 		return ("hh");

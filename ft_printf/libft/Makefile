@@ -88,6 +88,7 @@ SRC_NAMES = ft_memset.c \
 	  ft_double_power.c \
 	  ft_array_swap.c \
 	  ft_itoa_base.c \
+	  ft_llitoa_base.c \
 	  ft_ldouble_power.c \
 	  ft_tabdel.c \
 	  ft_fopen.c \

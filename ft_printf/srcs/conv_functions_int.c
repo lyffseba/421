@@ -53,14 +53,12 @@ char	*conv_o(va_list *ap, char *mod)
 		res = va_arg(*ap, size_t);
 	else if (*mod == 0)
 		res = va_arg(*ap, unsigned int);
-	if (res == 0)
-		return (ft_strdup("0"));
-	return (ft_itoa_base(res, 8));
+	return (ft_llitoa_base(res, 8));
 }
 
 char	*conv_u(va_list *ap, char *mod)
 {
-	long long int	res;
+	unsigned long long int	res;
 
 	res = 0;
 	if (ft_strequ(mod, "l"))
@@ -77,12 +75,12 @@ char	*conv_u(va_list *ap, char *mod)
 		res = va_arg(*ap, size_t);
 	else if (*mod == 0)
 		res = va_arg(*ap, unsigned int);
-	return (ft_itoa_base(res, 10));
+	return (ft_llitoa_base(res, 10));
 }
 
 char	*conv_x(va_list *ap, char *mod)
 {
-	long long int	res;
+	unsigned long long int	res;
 
 	res = 0;
 	if (ft_strequ(mod, "l"))
@@ -99,7 +97,7 @@ char	*conv_x(va_list *ap, char *mod)
 		res = va_arg(*ap, size_t);
 	else if (*mod == 0)
 		res = va_arg(*ap, unsigned int);
-	return (ft_itoa_base(res, 16));
+	return (ft_llitoa_base(res, 16));
 }
 
 char	*conv_big_x(va_list *ap, char *mod)

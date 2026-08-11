@@ -115,6 +115,7 @@ unsigned char		*ft_wchar_to_bytes(wint_t c);
 double				ft_double_power(double n, int pow);
 void				ft_array_swap(int *array, int i1, int i2);
 char				*ft_itoa_base(int n, int base);
+char				*ft_llitoa_base(unsigned long long n, int base);
 long double			ft_ldouble_power(long double n, int pow);
 void				ft_tabdel(char ***tab);
 t_file				*ft_fopen(const char *path);

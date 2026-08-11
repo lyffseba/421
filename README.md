@@ -45,18 +45,19 @@ resources/
 | `resources/norme.en.pdf` | The Norm | C standard at 42 |
 | `resources/ORIGINAL_OVERVIEW.md` | Upstream README | grades / history |
 
-## Build smoke
+## Build & test
 
-Requires `gcc`/`clang` and `make`. `make check` builds and fcleans the C
-projects that do not need extra system libraries, and **fails if any target
-fails**.
+Requires `gcc`/`clang` and `make`. On Linux, `libncurses` is needed for
+`corewar`.
 
 ```
-make check
+make verify   # trees present
+make check    # build/fclean smoke (fails on compile error)
+make test     # functional smoke (printf, push_swap, fillit, gnl, lem-in, corewar)
 ```
 
-Smoke targets: `libft`, `get_next_line`, `fillit`, `ft_printf`, `push_swap`,
-`lem_in`, `corewar`.
+Smoke build targets: `libft`, `get_next_line`, `fillit`, `ft_printf`,
+`push_swap`, `lem_in`, `corewar`.
 
 Graphics (`fdf`, `fractol`) build against the bundled
 `fdf/resources/minilibx_macos` (macOS / OpenGL + AppKit):
@@ -66,16 +67,9 @@ make -C fdf
 make -C fractol
 ```
 
-Not built by smoke: `roger_skyline_1` (docs only), `php_piscine` (needs PHP),
-`lem_in/bonus_visualizer` (needs SDL2), ML notebooks.
-
-## Integrity
-
-```
-make verify
-```
-
-Confirms every expected project directory is present and non-empty.
+Not covered by automated smoke: `roger_skyline_1` (docs only),
+`php_piscine` (needs PHP), `lem_in/bonus_visualizer` (needs SDL2),
+ML notebooks.
 
 ## Provenance
 

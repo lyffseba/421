@@ -8,13 +8,14 @@ PROJECTS = \
 
 BUILD = libft get_next_line fillit ft_printf push_swap lem_in corewar
 
-.PHONY: all verify check clean help
+.PHONY: all verify check test clean help
 
 all: verify
 
 help:
 	@echo "make verify  - every project tree present"
 	@echo "make check   - verify + build/fclean smoke (fails on error)"
+	@echo "make test    - functional smoke (build + run key binaries)"
 	@echo "make clean   - fclean smoke targets if built"
 
 verify:
@@ -42,6 +43,9 @@ check: verify
 	done; \
 	if [ "$$fail" -ne 0 ]; then echo "check failed"; exit 1; fi; \
 	echo "check ok"
+
+test: verify
+	@./scripts/test.sh
 
 clean:
 	@for t in $(BUILD); do $(MAKE) -C $$t fclean >/dev/null 2>&1 || true; done

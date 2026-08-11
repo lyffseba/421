@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_llitoa_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anleclab <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anleclab <anleclab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 11:39:22 by anleclab          #+#    #+#             */
-/*   Updated: 2019/04/04 12:38:36 by anleclab         ###   ########.fr       */
+/*   Updated: 2019/07/03 14:55:09 by anleclab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,39 @@ static void	init_base(char *base)
 	base[16] = 0;
 }
 
-/*
-** Returns a string containing the conversion of n in the given base. Ignores
-** the sign of n.
-*/
-char		*ft_itoa_base(int n, int base)
+static int	nb_digits(unsigned long long nb, int base)
 {
-	char			charbase[17];
-	char			*res;
-	unsigned int	unsigned_n;
-	int				nbdigits;
+	int		nbdigits;
+
+	if (base < 2)
+		return (-1);
+	if (nb == 0)
+		return (1);
+	nbdigits = 0;
+	while (nb)
+	{
+		nbdigits++;
+		nb /= (unsigned long long)base;
+	}
+	return (nbdigits);
+}
+
+char		*ft_llitoa_base(unsigned long long n, int base)
+{
+	char	charbase[17];
+	char	*res;
+	int		nbdigits;
 
 	if (base < 2 || base > 16)
 		return (NULL);
 	init_base(charbase);
-	unsigned_n = (n < 0) ? (unsigned int)(-n) : (unsigned int)n;
-	nbdigits = ft_nbdigits_base(unsigned_n, base);
-	if (!(res = ft_strnew(nbdigits)))
+	nbdigits = nb_digits(n, base);
+	if (!(res = ft_strnew((size_t)nbdigits)))
 		return (NULL);
 	while (nbdigits--)
 	{
-		res[nbdigits] = charbase[unsigned_n % base];
-		unsigned_n /= base;
+		res[nbdigits] = charbase[n % (unsigned long long)base];
+		n /= (unsigned long long)base;
 	}
 	return (res);
 }

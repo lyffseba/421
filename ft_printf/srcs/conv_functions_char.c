@@ -48,11 +48,11 @@ char					*conv_p(va_list *ap, char *mod)
 
 	(void)mod;
 	str = va_arg(*ap, void *);
-	if (!(res = ft_strnew(19)))
-		exit_error("error: malloc failed\n", 1, str);
-	ft_strncpy(res, "0x", 2);
-	conv = ft_itoa_base((unsigned long int)str, 16);
-	ft_strncat(res, conv, 16);
+	conv = ft_llitoa_base((unsigned long)str, 16);
+	if (!conv)
+		exit_error("error: malloc failed\n", 0);
+	if (!(res = ft_strjoin("0x", conv)))
+		exit_error("error: malloc failed\n", 1, conv);
 	free(conv);
 	return (res);
 }

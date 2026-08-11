@@ -18,10 +18,10 @@ static void	init_base(char *base)
 
 	i = -1;
 	while (++i < 10)
-		base[i] = i;
+		base[i] = (char)('0' + i);
 	while (i < 16)
 	{
-		base[i] = i - 10 + 'A';
+		base[i] = (char)(i - 10 + 'a');
 		i++;
 	}
 	base[16] = 0;
@@ -41,11 +41,11 @@ char		*ft_itoa_base(int n, int base)
 	if (base < 2 || base > 16)
 		return (NULL);
 	init_base(charbase);
-	unsigned_n = (n < 0) ? -n : n;
+	unsigned_n = (n < 0) ? (unsigned int)(-n) : (unsigned int)n;
 	nbdigits = ft_nbdigits_base(unsigned_n, base);
 	if (!(res = ft_strnew(nbdigits)))
 		return (NULL);
-	while (--nbdigits)
+	while (nbdigits--)
 	{
 		res[nbdigits] = charbase[unsigned_n % base];
 		unsigned_n /= base;

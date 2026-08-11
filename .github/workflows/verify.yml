@@ -7,7 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: install deps
+        run: sudo apt-get update && sudo apt-get install -y build-essential libncurses-dev
       - name: verify trees
         run: make verify
       - name: build smoke
         run: make check
+      - name: functional tests
+        run: make test
