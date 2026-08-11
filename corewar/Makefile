@@ -76,7 +76,8 @@ SRCASSEMBLER += check_instruction.c \
 MAIN_ASSEMBLER = asm.c
 SRCUNASSEMBLER = $(SRCASM)
 SRCUNASSEMBLER += desas_instruction.c \
-		write_champion_code.c
+		write_champion_code.c \
+		error.c
 MAIN_UNASSEMBLER = desasssembler.c
 
 SRCSFD = srcs/
