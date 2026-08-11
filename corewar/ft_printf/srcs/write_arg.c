@@ -59,7 +59,7 @@ static void	set_conv_specs(t_form *fmt, t_specs *specs)
 	fmt->i = 0;
 }
 
-void		write_arg(t_form *fmt, va_list ap)
+void		write_arg(t_form *fmt, va_list *ap)
 {
 	char	*res;
 	t_specs	specs;

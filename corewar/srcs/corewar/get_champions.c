@@ -48,14 +48,14 @@ static void		init_champs(t_cor *cor, int ac, char **av)
 
 static int		skip_empty_bytes(int fd)
 {
-	unsigned char	buf[5];
-	int				rval;
+	unsigned char	buf[4];
+	int				i;
 
-	if ((rval = read(fd, buf, 4)) != 4)
+	if (read(fd, buf, 4) != 4)
 		return (-1);
-	buf[rval] = 0;
-	while (*buf)
-		if ((*buf)++ != 0)
+	i = -1;
+	while (++i < 4)
+		if (buf[i] != 0)
 			return (-1);
 	return (0);
 }

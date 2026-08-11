@@ -77,7 +77,7 @@ int						create_champion(t_fichier *file, t_champion *champion)
 {
 	int size;
 
-	file->fd_out = open(file->file_name, O_WRONLY | O_CREAT | O_TRUNC);
+	file->fd_out = open(file->file_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	champion->header->prog_size = champion->size;
 	write_header(champion->header, file->fd_out);
 	size = manage_prog(champion);

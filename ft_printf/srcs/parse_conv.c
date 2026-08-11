@@ -55,7 +55,7 @@ static char		*get_mod(char *specs)
 	return ("");
 }
 
-char			*parse_conv(va_list ap, char *specs)
+char			*parse_conv(va_list *ap, char *specs)
 {
 	char	*str;
 	int		i;

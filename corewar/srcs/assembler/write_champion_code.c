@@ -72,7 +72,7 @@ int			write_champion_prog(t_champion *champion, char *str)
 	i = -1;
 	if (!(str = ft_strnjoin(str, "s", ft_strlen(str) - 3)))
 		return (0);
-	fd = open(str, O_WRONLY | O_CREAT | O_TRUNC);
+	fd = open(str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	ft_memdel((void**)&str);
 	ft_putstr_fd(NAME_CMD_STRING, fd);
 	ft_putstr_fd(" \"", fd);

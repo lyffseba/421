@@ -6,7 +6,7 @@ PROJECTS = \
 	fdf fractol roger_skyline_1 php_piscine \
 	workshops_machinelearning
 
-BUILD = libft get_next_line fillit ft_printf
+BUILD = libft get_next_line fillit ft_printf push_swap lem_in corewar
 
 .PHONY: all verify check clean help
 
@@ -14,7 +14,7 @@ all: verify
 
 help:
 	@echo "make verify  - every project tree present"
-	@echo "make check   - verify + build/fclean smoke"
+	@echo "make check   - verify + build/fclean smoke (fails on error)"
 	@echo "make clean   - fclean smoke targets if built"
 
 verify:
@@ -30,12 +30,18 @@ verify:
 	echo "verify ok"
 
 check: verify
-	@for t in $(BUILD); do \
+	@fail=0; \
+	for t in $(BUILD); do \
 		echo "++ $$t"; \
-		$(MAKE) -C $$t >/dev/null; \
-		$(MAKE) -C $$t fclean >/dev/null; \
-	done
-	@echo "check ok"
+		if $(MAKE) -C $$t; then \
+			$(MAKE) -C $$t fclean >/dev/null || true; \
+		else \
+			echo "FAIL $$t"; fail=1; \
+			$(MAKE) -C $$t fclean >/dev/null 2>&1 || true; \
+		fi; \
+	done; \
+	if [ "$$fail" -ne 0 ]; then echo "check failed"; exit 1; fi; \
+	echo "check ok"
 
 clean:
 	@for t in $(BUILD); do $(MAKE) -C $$t fclean >/dev/null 2>&1 || true; done

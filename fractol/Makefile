@@ -43,22 +43,29 @@ LIBFT_HDR = -I./libft/inc
 LIB_BINARY = -L./libft -lft
 LIBFT= libft/libft.a
 
-MLX = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+MLX_PATH = ../fdf/resources/minilibx_macos
+MLX_LIB = $(MLX_PATH)/libmlx.a
+MLX = -I $(MLX_PATH) -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+MLX_HDR = -I $(MLX_PATH)
 
 RED = \033[0;31m
 GREEN = \033[0;32m
 NONE = \033[0m
 
-all: check_libft $(NAME) $(HDRS)
+all: check_libft check_mlx $(NAME) $(HDRS)
 	@echo "Compilation successful"
 
-$(NAME): project $(OBJSFD) $(OBJS) $(LIBFT) $(HDRS)
+$(NAME): project $(OBJSFD) $(OBJS) $(LIBFT) $(MLX_LIB) $(HDRS)
 	@gcc $(CFLAGS) $(MLX) $(OBJS) $(LIB_BINARY) -o $@
 	@echo "\t[ \033[0;32m✔\033[0m ] fractol executable"
 
 check_libft:
 	@echo "Checking libft..."
 	@make -C libft
+
+check_mlx:
+	@echo "Checking minilibx..."
+	@make -C $(MLX_PATH)
 
 project:
 	@echo "Checking project..."
@@ -68,7 +75,7 @@ $(OBJSFD):
 	@echo "\t[ $(GREEN)✔$(NONE) ] objs/ directory"
 
 $(OBJSFD)%.o: $(SRCSFD)%.c $(HDRS)
-	@gcc $(CFLAGS) $(HDR_INC) $(LIBFT_HDR) -c $< -o $@
+	@gcc $(CFLAGS) $(HDR_INC) $(LIBFT_HDR) $(MLX_HDR) -c $< -o $@
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ object"
 
 clean:

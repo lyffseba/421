@@ -44,17 +44,24 @@ LIBFT_HDR = -I./libft/includes
 LIB_BINARY = -L./libft -lft
 LIBFT= libft/libft.a
 
-MLX = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+MLX_PATH = resources/minilibx_macos
+MLX_LIB = $(MLX_PATH)/libmlx.a
+MLX = -I $(MLX_PATH) -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+MLX_HDR = -I $(MLX_PATH)
 
 RED = \033[0;31m
 GREEN = \033[0;32m
 NONE = \033[0m
 
-all: check_libft project $(NAME)
+all: check_libft check_mlx project $(NAME)
 
 check_libft:
 	@echo "Checking libft..."
 	@make -C libft
+
+check_mlx:
+	@echo "Checking minilibx..."
+	@make -C $(MLX_PATH)
 
 project:
 	@echo "Checking project..."
@@ -64,10 +71,10 @@ $(OBJSFD):
 	@echo "\t[ $(GREEN)✔$(NONE) ] $(OBJSFD) directory"
 
 $(OBJSFD)%.o: $(SRCSFD)%.c $(HDRS) $(LIBFT)
-	@gcc $(CFLAGS) $(HDR_INC) $(LIBFT_HDR) -c $< -o $@
+	@gcc $(CFLAGS) $(HDR_INC) $(LIBFT_HDR) $(MLX_HDR) -c $< -o $@
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ object"
 
-$(NAME): $(OBJSFD) $(OBJS) $(LIBFT) $(HDRS)
+$(NAME): $(OBJSFD) $(OBJS) $(LIBFT) $(MLX_LIB) $(HDRS)
 	@gcc $(CFLAGS) $(OBJS) $(MLX) $(LIB_BINARY) -o $@
 	@echo "\t[ \033[0;32m✔\033[0m ] $(NAME) executable"
 
@@ -75,6 +82,7 @@ clean:
 	@/bin/rm -rf $(OBJSFD)
 	@echo "\t[ $(RED)✗$(NONE) ] $(OBJSFD) directory"
 	@make -C ./libft clean
+	@make -C $(MLX_PATH) clean >/dev/null 2>&1 || true
 
 fclean: clean
 	@/bin/rm -rf $(NAME)

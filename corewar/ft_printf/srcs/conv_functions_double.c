@@ -78,14 +78,14 @@ static char	*integ_part(double *dbl)
 	return (res);
 }
 
-char		*conv_f(va_list ap, t_specs *specs)
+char		*conv_f(va_list *ap, t_specs *specs)
 {
 	char	*res;
 	double	dbl;
 	char	*tmp;
 	int		isneg;
 
-	dbl = va_arg(ap, double);
+	dbl = va_arg(*ap, double);
 	isneg = (dbl < 0 ? 1 : 0);
 	res = integ_part(&dbl);
 	if (specs->flags & ACCURACY)

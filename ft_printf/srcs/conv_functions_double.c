@@ -91,7 +91,7 @@ static int	get_accuracy(char *specs)
 	return (res);
 }
 
-char		*conv_f(va_list ap, char *specs)
+char		*conv_f(va_list *ap, char *specs)
 {
 	int		accu;
 	char	*res;
@@ -102,7 +102,7 @@ char		*conv_f(va_list ap, char *specs)
 	if (ft_strchr(specs, 'L'))
 		return (conv_longf(ap, specs));
 	accu = get_accuracy(specs);
-	dbl = va_arg(ap, double);
+	dbl = va_arg(*ap, double);
 	isneg = (dbl < 0 ? 1 : 0);
 	res = integ_part(&dbl);
 	if (accu)

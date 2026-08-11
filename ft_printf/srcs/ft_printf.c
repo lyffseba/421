@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char		*converter(char *specs, va_list ap)
+static char		*converter(char *specs, va_list *ap)
 {
 	char	*res;
 	char	*res_nullchar;
@@ -71,7 +71,7 @@ static t_form	write_color(t_form anc)
 	return (anc);
 }
 
-static t_form	write_arg(t_form anc, va_list ap)
+static t_form	write_arg(t_form anc, va_list *ap)
 {
 	char	*specs;
 	char	*arg;
@@ -110,7 +110,7 @@ int				ft_printf(const char *format, ...)
 		if (anc.fmt[anc.i] == '{')
 			anc = write_color(anc);
 		else if (anc.fmt[anc.i] == '%')
-			anc = write_arg(anc, ap);
+			anc = write_arg(anc, &ap);
 		else
 			anc.i++;
 	}

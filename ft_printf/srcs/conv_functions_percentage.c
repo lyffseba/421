@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-char	*conv_percentage(va_list ap, char *mod)
+char	*conv_percentage(va_list *ap, char *mod)
 {
-	ap += 0;
-	mod += 0;
+	(void)ap;
+	(void)mod;
 	return (ft_strdup("%"));
 }

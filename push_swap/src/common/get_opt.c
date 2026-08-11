@@ -37,7 +37,6 @@ static t_opt	parse_opt(char ***av, int *ac, int get_stream, t_file **stream)
 t_opt			get_opt(int *ac, char ***av, int get_stream, t_file **stream)
 {
 	t_opt	opt;
-	int		i;
 	t_opt	tmp;
 
 	if (get_stream)
@@ -45,7 +44,6 @@ t_opt			get_opt(int *ac, char ***av, int get_stream, t_file **stream)
 	opt = NONE;
 	while (--(*ac) && (++(*av))[0][0] == '-' && (!get_stream || !*stream))
 	{
-		i = 0;
 		if (!(*av)[0][1])
 			return (ERROR);
 		if ((*av)[0][1] >= '0' && (*av)[0][1] <= '9')

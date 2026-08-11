@@ -11,13 +11,13 @@
 # **************************************************************************** #
 
 NAME = libft.a
-SRC_PATH = srcs/
+SRC_PATH = srcs
 SRC_NAME = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 HEADER = -Iincludes
 OBJ = $(SRC:.c=.o)
 
-.PHONY: all, clean, fclean, re
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
@@ -25,8 +25,8 @@ $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-%.o: $(SRC_PATH)%.c
-	gcc -Werror -Wall -Wextra $(HEADER) -c $<
+$(SRC_PATH)/%.o: $(SRC_PATH)/%.c
+	gcc -Werror -Wall -Wextra $(HEADER) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

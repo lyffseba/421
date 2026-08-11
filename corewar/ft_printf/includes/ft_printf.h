@@ -36,7 +36,7 @@
 # define MOD_J 16
 # define MOD_Z 32
 
-typedef va_list	t_va;
+typedef va_list	*t_va;
 
 typedef struct	s_specs
 {
@@ -80,19 +80,19 @@ int				param_len(const char *format);
 char			*parse_color(const char *format);
 char			*parse_flag(char *str, t_specs *specs);
 char			*parse_accufield(char *str, t_specs *specs);
-char			*parse_conv(va_list ap, t_specs *specs);
-char			*conv_d(va_list ap, t_specs *specs);
-char			*conv_i(va_list ap, t_specs *specs);
-char			*conv_o(va_list ap, t_specs *specs);
-char			*conv_u(va_list ap, t_specs *specs);
-char			*conv_x(va_list ap, t_specs *specs);
-char			*conv_big_x(va_list ap, t_specs *specs);
-char			*conv_f(va_list ap, t_specs *specs);
-char			*conv_c(va_list ap, t_specs *specs);
-char			*conv_s(va_list ap, t_specs *specs);
-char			*conv_p(va_list ap, t_specs *specs);
-char			*conv_binary(va_list ap, t_specs *specs);
-char			*conv_percentage(va_list ap, t_specs *specs);
+char			*parse_conv(va_list *ap, t_specs *specs);
+char			*conv_d(va_list *ap, t_specs *specs);
+char			*conv_i(va_list *ap, t_specs *specs);
+char			*conv_o(va_list *ap, t_specs *specs);
+char			*conv_u(va_list *ap, t_specs *specs);
+char			*conv_x(va_list *ap, t_specs *specs);
+char			*conv_big_x(va_list *ap, t_specs *specs);
+char			*conv_f(va_list *ap, t_specs *specs);
+char			*conv_c(va_list *ap, t_specs *specs);
+char			*conv_s(va_list *ap, t_specs *specs);
+char			*conv_p(va_list *ap, t_specs *specs);
+char			*conv_binary(va_list *ap, t_specs *specs);
+char			*conv_percentage(va_list *ap, t_specs *specs);
 char			*flag_plus(char *str, t_specs *specs);
 char			*flag_minus(char *str, t_specs *specs);
 char			*flag_space(char *str, t_specs *specs);
@@ -107,8 +107,8 @@ char			*parse_color(const char *format);
 int				param_len(const char *format);
 unsigned char	*concatenate(unsigned char *s1, unsigned char *s2);
 void			print_current(t_form *fmt);
-void			write_arg(t_form *fmt, va_list ap);
-char			*converter(t_specs *specs, va_list ap);
+void			write_arg(t_form *fmt, va_list *ap);
+char			*converter(t_specs *specs, va_list *ap);
 void			add_flag(t_form *fmt, t_specs *specs);
 
 #endif

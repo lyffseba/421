@@ -1,6 +1,7 @@
 *.o
 *.a
 *.out
+*.cor
 *.dSYM/
 a.out
 .DS_Store
@@ -11,3 +12,17 @@ a.out
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+__MACOSX/
+
+# built binaries
+**/push_swap/push_swap
+**/push_swap/checker
+**/fillit/fillit
+**/lem_in/lem-in
+**/get_next_line/gnl
+**/corewar/corewar
+**/corewar/asm
+**/corewar/unassembler
+**/fdf/fdf
+**/fractol/fractol
+**/piscine_reloaded/ex27/ft_display_file

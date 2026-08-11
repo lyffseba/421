@@ -70,7 +70,7 @@ char	*flag_minus(char *str, char conv)
 	int		i;
 	int		j;
 
-	conv += 0;
+	(void)conv;
 	i = 0;
 	while (str[i] == ' ')
 		i++;
@@ -87,7 +87,7 @@ char	*flag_zero(char *str, char conv)
 	int		i;
 
 	i = -1;
-	conv += 0;
+	(void)conv;
 	while (str[++i] == ' ')
 		str[i] = '0';
 	if (str[i] == '\t')

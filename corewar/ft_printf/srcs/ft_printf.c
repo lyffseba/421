@@ -64,7 +64,7 @@ int				ft_printf(const char *format, ...)
 		else if (fmt.str[fmt.i] == '%')
 		{
 			print_current(&fmt);
-			write_arg(&fmt, ap);
+			write_arg(&fmt, &ap);
 		}
 		else
 			fmt.i++;

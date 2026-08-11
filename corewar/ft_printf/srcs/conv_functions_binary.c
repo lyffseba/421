@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char		*conv_binary(va_list ap, t_specs *specs)
+char		*conv_binary(va_list *ap, t_specs *specs)
 {
 	char				*str;
 	unsigned long long	z;
@@ -21,7 +21,7 @@ char		*conv_binary(va_list ap, t_specs *specs)
 	unsigned long long	x;
 
 	(void)specs;
-	x = va_arg(ap, unsigned long long);
+	x = va_arg(*ap, unsigned long long);
 	if (x > UINT_MAX)
 		size = 64;
 	else

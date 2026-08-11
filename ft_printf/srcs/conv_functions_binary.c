@@ -41,12 +41,12 @@ static char	*bytes_to_string(long int x)
 	return (str);
 }
 
-char		*conv_binary(va_list ap, char *mod)
+char		*conv_binary(va_list *ap, char *mod)
 {
 	char	*res;
 
-	mod += 0;
-	if (!(res = ft_strdup(bytes_to_string(va_arg(ap, long int)))))
+	(void)mod;
+	if (!(res = ft_strdup(bytes_to_string(va_arg(*ap, long int)))))
 		exit_error("error: malloc failed\n", 0);
 	return (res);
 }

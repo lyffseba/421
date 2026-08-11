@@ -28,22 +28,25 @@ int				follow_instructions(t_piles *piles, t_fun *fun_list,
 {
 	int		i;
 	int		instr_found;
+	int		len;
 
 	while (instr[0])
 	{
 		while (instr[0] == ' ')
 			instr++;
 		instr_found = 0;
+		len = leninstr(instr);
 		i = -1;
 		while (!instr_found && fun_list[++i].instr)
-			if (ft_strnequ(instr, fun_list[i].instr, leninstr(instr)))
+			if ((int)ft_strlen(fun_list[i].instr) == len
+				&& ft_strnequ(instr, fun_list[i].instr, len))
 			{
 				fun_list[i].f(piles, opt);
 				instr_found = 1;
 			}
 		if (!instr_found)
 			return (0);
-		instr += leninstr(instr);
+		instr += len;
 	}
 	return (1);
 }

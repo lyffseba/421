@@ -21,7 +21,9 @@ t_file	*ft_fopen(const char *path)
 
 	if (!(stream = (t_file *)malloc(sizeof(t_file))))
 		return (NULL);
-	if ((stream->fd = open(path, O_RDONLY)) == -1)
+	if (!path || !path[0])
+		stream->fd = 0;
+	else if ((stream->fd = open(path, O_RDONLY)) == -1)
 	{
 		free(stream);
 		return (NULL);

@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_functions_percentage.c                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anleclab <anleclab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anleclab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 09:57:24 by anleclab          #+#    #+#             */
-/*   Updated: 2019/07/01 13:46:50 by anleclab         ###   ########.fr       */
+/*   Created: 2018/11/06 10:04:09 by anleclab          #+#    #+#             */
+/*   Updated: 2018/11/06 10:04:09 by anleclab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+void	ft_putchar(char c);
 
-char	*conv_percentage(va_list *ap, t_specs *specs)
+void	ft_putstr(char *str)
 {
-	(void)ap;
-	(void)specs;
-	return (ft_strdup("%"));
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
 }

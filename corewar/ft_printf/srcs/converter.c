@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char		*converter(t_specs *specs, va_list ap)
+char		*converter(t_specs *specs, va_list *ap)
 {
 	char	*res;
 

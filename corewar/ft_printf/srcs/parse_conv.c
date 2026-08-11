@@ -50,7 +50,7 @@ static t_conv	*initialize_conv_functions(void)
 	return (conv_list);
 }
 
-char			*parse_conv(va_list ap, t_specs *specs)
+char			*parse_conv(va_list *ap, t_specs *specs)
 {
 	char	*str;
 	int		i;

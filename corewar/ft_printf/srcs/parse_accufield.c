@@ -14,9 +14,6 @@
 
 char		*parse_accufield(char *str, t_specs *specs)
 {
-	int		len;
-
-	len = 0;
 	if (specs->flags & ACCURACY)
 	{
 		if (!(str = accuracy(str, specs)))

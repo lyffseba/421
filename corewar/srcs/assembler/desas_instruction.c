@@ -72,7 +72,7 @@ int				get_instruction(t_champion *champion, unsigned char *prog)
 
 	i = -1;
 	pos = 1;
-	if (prog[0] > 16 && prog[0] <= 0)
+	if (prog[0] > 16 || prog[0] == 0)
 		return (0);
 	if (!(token = create_token(0, INSTRUCTION)))
 		return (0);

@@ -47,21 +47,27 @@ resources/
 
 ## Build smoke
 
-Requires `gcc` and `make`. Graphics/sysadmin trees need extra libs and are
-not built here.
+Requires `gcc`/`clang` and `make`. `make check` builds and fcleans the C
+projects that do not need extra system libraries, and **fails if any target
+fails**.
 
 ```
 make check
 ```
 
-Equivalent:
+Smoke targets: `libft`, `get_next_line`, `fillit`, `ft_printf`, `push_swap`,
+`lem_in`, `corewar`.
+
+Graphics (`fdf`, `fractol`) build against the bundled
+`fdf/resources/minilibx_macos` (macOS / OpenGL + AppKit):
 
 ```
-make -C libft && make -C libft fclean
-make -C get_next_line && make -C get_next_line fclean
-make -C fillit && make -C fillit fclean
-make -C ft_printf && make -C ft_printf fclean
+make -C fdf
+make -C fractol
 ```
+
+Not built by smoke: `roger_skyline_1` (docs only), `php_piscine` (needs PHP),
+`lem_in/bonus_visualizer` (needs SDL2), ML notebooks.
 
 ## Integrity
 

@@ -12,24 +12,24 @@
 
 #include "ft_printf.h"
 
-static unsigned char	*conv_c_wchar(va_list ap, t_specs *specs)
+static unsigned char	*conv_c_wchar(va_list *ap, t_specs *specs)
 {
 	wint_t			c;
 	unsigned char	*res;
 
-	if ((c = va_arg(ap, wint_t)) == 0)
+	if ((c = va_arg(*ap, wint_t)) == 0)
 		specs->null_char = 1;
 	res = ft_wchar_to_bytes(c);
 	return (res);
 }
 
-static unsigned char	*conv_s_wchar(va_list ap)
+static unsigned char	*conv_s_wchar(va_list *ap)
 {
 	wchar_t			*arg;
 	unsigned char	*res;
 	int				i;
 
-	if (!(arg = va_arg(ap, wchar_t *)))
+	if (!(arg = va_arg(*ap, wchar_t *)))
 		return ((unsigned char *)ft_strdup("(null)"));
 	if (!*arg)
 		return ((unsigned char *)ft_strdup(""));
@@ -43,19 +43,19 @@ static unsigned char	*conv_s_wchar(va_list ap)
 	return (res);
 }
 
-char					*conv_p(va_list ap, t_specs *specs)
+char					*conv_p(va_list *ap, t_specs *specs)
 {
 	void	*str;
 	char	*conv;
 
 	(void)specs;
-	str = va_arg(ap, void *);
+	str = va_arg(*ap, void *);
 	conv = ft_itoa_base((unsigned long)str, 16);
 	conv = suffix("0x", conv);
 	return (conv);
 }
 
-char					*conv_c(va_list ap, t_specs *specs)
+char					*conv_c(va_list *ap, t_specs *specs)
 {
 	char			*res;
 	unsigned char	arg;
@@ -64,7 +64,7 @@ char					*conv_c(va_list ap, t_specs *specs)
 		res = (char *)conv_c_wchar(ap, specs);
 	else
 	{
-		if ((arg = (unsigned char)va_arg(ap, int)) == 0)
+		if ((arg = (unsigned char)va_arg(*ap, int)) == 0)
 			specs->null_char = 1;
 		if (!(res = ft_strnew(1)))
 			exit_error("error: malloc_failed\n", 0);
@@ -73,7 +73,7 @@ char					*conv_c(va_list ap, t_specs *specs)
 	return (res);
 }
 
-char					*conv_s(va_list ap, t_specs *specs)
+char					*conv_s(va_list *ap, t_specs *specs)
 {
 	char	*res;
 
@@ -81,7 +81,7 @@ char					*conv_s(va_list ap, t_specs *specs)
 		res = (char *)conv_s_wchar(ap);
 	else
 	{
-		res = (char *)va_arg(ap, const char *);
+		res = (char *)va_arg(*ap, const char *);
 		if (!res)
 		{
 			if (!(res = ft_strdup("(null)")))

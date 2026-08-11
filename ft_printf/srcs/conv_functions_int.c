@@ -12,97 +12,97 @@
 
 #include "ft_printf.h"
 
-char	*conv_d(va_list ap, char *mod)
+char	*conv_d(va_list *ap, char *mod)
 {
 	long long int	res;
 
 	res = 0;
 	if (ft_strequ(mod, "l"))
-		return (ft_litoa(va_arg(ap, long)));
+		return (ft_litoa(va_arg(*ap, long)));
 	else if (ft_strequ(mod, "ll"))
-		return (ft_llitoa(va_arg(ap, long long)));
+		return (ft_llitoa(va_arg(*ap, long long)));
 	else if (ft_strequ(mod, "h"))
-		res = (short int)va_arg(ap, int);
+		res = (short int)va_arg(*ap, int);
 	else if (ft_strequ(mod, "hh"))
-		res = (char)va_arg(ap, int);
+		res = (char)va_arg(*ap, int);
 	else if (ft_strequ(mod, "j"))
-		return (ft_llitoa(va_arg(ap, intmax_t)));
+		return (ft_llitoa(va_arg(*ap, intmax_t)));
 	else if (ft_strequ(mod, "z"))
-		return (ft_llitoa(va_arg(ap, ssize_t)));
+		return (ft_llitoa(va_arg(*ap, ssize_t)));
 	else if (*mod == 0)
-		res = va_arg(ap, int);
+		res = va_arg(*ap, int);
 	return (ft_itoa(res));
 }
 
-char	*conv_o(va_list ap, char *mod)
+char	*conv_o(va_list *ap, char *mod)
 {
 	unsigned long long int	res;
 
 	res = 0;
 	if (ft_strequ(mod, "l"))
-		res = va_arg(ap, unsigned long);
+		res = va_arg(*ap, unsigned long);
 	else if (ft_strequ(mod, "ll"))
-		res = va_arg(ap, unsigned long long);
+		res = va_arg(*ap, unsigned long long);
 	else if (ft_strequ(mod, "h"))
-		res = va_arg(ap, unsigned int) & 0xFFFF;
+		res = va_arg(*ap, unsigned int) & 0xFFFF;
 	else if (ft_strequ(mod, "hh"))
-		res = va_arg(ap, unsigned int) & 0xFF;
+		res = va_arg(*ap, unsigned int) & 0xFF;
 	else if (ft_strequ(mod, "j"))
-		res = va_arg(ap, uintmax_t);
+		res = va_arg(*ap, uintmax_t);
 	else if (ft_strequ(mod, "z"))
-		res = va_arg(ap, size_t);
+		res = va_arg(*ap, size_t);
 	else if (*mod == 0)
-		res = va_arg(ap, unsigned int);
+		res = va_arg(*ap, unsigned int);
 	if (res == 0)
 		return (ft_strdup("0"));
 	return (ft_itoa_base(res, 8));
 }
 
-char	*conv_u(va_list ap, char *mod)
+char	*conv_u(va_list *ap, char *mod)
 {
 	long long int	res;
 
 	res = 0;
 	if (ft_strequ(mod, "l"))
-		res = va_arg(ap, unsigned long);
+		res = va_arg(*ap, unsigned long);
 	else if (ft_strequ(mod, "ll"))
-		res = va_arg(ap, unsigned long long);
+		res = va_arg(*ap, unsigned long long);
 	else if (ft_strequ(mod, "h"))
-		res = va_arg(ap, unsigned int) & 0xFFFF;
+		res = va_arg(*ap, unsigned int) & 0xFFFF;
 	else if (ft_strequ(mod, "hh"))
-		res = va_arg(ap, unsigned int) & 0xFF;
+		res = va_arg(*ap, unsigned int) & 0xFF;
 	else if (ft_strequ(mod, "j"))
-		res = va_arg(ap, uintmax_t);
+		res = va_arg(*ap, uintmax_t);
 	else if (ft_strequ(mod, "z"))
-		res = va_arg(ap, size_t);
+		res = va_arg(*ap, size_t);
 	else if (*mod == 0)
-		res = va_arg(ap, unsigned int);
+		res = va_arg(*ap, unsigned int);
 	return (ft_itoa_base(res, 10));
 }
 
-char	*conv_x(va_list ap, char *mod)
+char	*conv_x(va_list *ap, char *mod)
 {
 	long long int	res;
 
 	res = 0;
 	if (ft_strequ(mod, "l"))
-		res = va_arg(ap, unsigned long);
+		res = va_arg(*ap, unsigned long);
 	else if (ft_strequ(mod, "ll"))
-		res = va_arg(ap, unsigned long long);
+		res = va_arg(*ap, unsigned long long);
 	else if (ft_strequ(mod, "h"))
-		res = va_arg(ap, unsigned int) & 0xFFFF;
+		res = va_arg(*ap, unsigned int) & 0xFFFF;
 	else if (ft_strequ(mod, "hh"))
-		res = va_arg(ap, unsigned int) & 0xFF;
+		res = va_arg(*ap, unsigned int) & 0xFF;
 	else if (ft_strequ(mod, "j"))
-		res = va_arg(ap, uintmax_t);
+		res = va_arg(*ap, uintmax_t);
 	else if (ft_strequ(mod, "z"))
-		res = va_arg(ap, size_t);
+		res = va_arg(*ap, size_t);
 	else if (*mod == 0)
-		res = va_arg(ap, unsigned int);
+		res = va_arg(*ap, unsigned int);
 	return (ft_itoa_base(res, 16));
 }
 
-char	*conv_big_x(va_list ap, char *mod)
+char	*conv_big_x(va_list *ap, char *mod)
 {
 	int		i;
 	char	*res;

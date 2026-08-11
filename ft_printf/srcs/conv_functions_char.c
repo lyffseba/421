@@ -12,23 +12,23 @@
 
 #include "ft_printf.h"
 
-static unsigned char	*conv_c_wchar(va_list ap)
+static unsigned char	*conv_c_wchar(va_list *ap)
 {
 	wint_t			c;
 	unsigned char	*res;
 
-	c = va_arg(ap, wint_t);
+	c = va_arg(*ap, wint_t);
 	res = ft_wchar_to_bytes(c);
 	return (res);
 }
 
-static unsigned char	*conv_s_wchar(va_list ap)
+static unsigned char	*conv_s_wchar(va_list *ap)
 {
 	wchar_t			*arg;
 	unsigned char	*res;
 	int				i;
 
-	arg = va_arg(ap, wchar_t *);
+	arg = va_arg(*ap, wchar_t *);
 	i = 0;
 	if (!(res = (unsigned char *)ft_strnew(1)))
 		exit_error("error: malloc failed\n", 0);
@@ -40,14 +40,14 @@ static unsigned char	*conv_s_wchar(va_list ap)
 	return (res);
 }
 
-char					*conv_p(va_list ap, char *mod)
+char					*conv_p(va_list *ap, char *mod)
 {
 	void	*str;
 	char	*res;
 	char	*conv;
 
-	mod += 0;
-	str = va_arg(ap, void *);
+	(void)mod;
+	str = va_arg(*ap, void *);
 	if (!(res = ft_strnew(19)))
 		exit_error("error: malloc failed\n", 1, str);
 	ft_strncpy(res, "0x", 2);
@@ -57,7 +57,7 @@ char					*conv_p(va_list ap, char *mod)
 	return (res);
 }
 
-char					*conv_c(va_list ap, char *mod)
+char					*conv_c(va_list *ap, char *mod)
 {
 	char			*res;
 	unsigned char	arg;
@@ -66,7 +66,7 @@ char					*conv_c(va_list ap, char *mod)
 		res = (char *)conv_c_wchar(ap);
 	else
 	{
-		arg = (unsigned char)va_arg(ap, int);
+		arg = (unsigned char)va_arg(*ap, int);
 		if (!(res = ft_strnew(1)))
 			exit_error("error: malloc_failed\n", 0);
 		res[0] = arg;
@@ -74,7 +74,7 @@ char					*conv_c(va_list ap, char *mod)
 	return (res);
 }
 
-char					*conv_s(va_list ap, char *mod)
+char					*conv_s(va_list *ap, char *mod)
 {
 	char	*res;
 
@@ -82,7 +82,7 @@ char					*conv_s(va_list ap, char *mod)
 		res = (char *)conv_s_wchar(ap);
 	else
 	{
-		res = (char *)va_arg(ap, const char *);
+		res = (char *)va_arg(*ap, const char *);
 		if (!res)
 		{
 			if (!(res = ft_strdup("(null)")))
