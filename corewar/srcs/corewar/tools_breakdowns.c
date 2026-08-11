@@ -49,7 +49,7 @@ static void		draw_last_dash(t_cor *cor, int total, int i, int *max)
 
 	j = -1;
 	attribute = (cor->curr_cycle >= CYCLE_TO_DIE)
-		? get_champ_color(i) : COLOR_PAIR(GRAY);
+		? get_champ_color(i) : (int)COLOR_PAIR(GRAY);
 	wattron(cor->visu->arena_info, attribute);
 	while (++j < (((double)cor->champs[i]->lives_in_last_period * 50)
 				/ total) && *max < 50)
@@ -68,6 +68,7 @@ void			draw_current_live(t_cor *cor)
 
 	i = -1;
 	total = 0;
+	max = 0;
 	while (++i < cor->nb_champs)
 		total += cor->champs[i]->lives_in_curr_period;
 	if (total == 0)
